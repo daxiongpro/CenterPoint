@@ -15,7 +15,7 @@ from sensor_msgs.msg import PointCloud2, PointField
 from jsk_recognition_msgs.msg import BoundingBox, BoundingBoxArray
 from pyquaternion import Quaternion
 
-from det3d import __version__, torchie
+from det3d import torchie
 from det3d.models import build_detector
 from det3d.torchie import Config
 from det3d.core.input.voxel_generator import VoxelGenerator
@@ -229,8 +229,8 @@ if __name__ == "__main__":
 
     global proc
     ## CenterPoint
-    config_path = 'configs/centerpoint/nusc_centerpoint_pp_02voxel_circle_nms_demo.py'
-    model_path = 'models/last.pth'
+    config_path = 'configs/nusc/pp/nusc_centerpoint_pp_02voxel_two_pfn_10sweep.py'
+    model_path = 'model/centerpoint_pillar.pth'
 
     proc_1 = Processor_ROS(config_path, model_path)
     
@@ -245,8 +245,9 @@ if __name__ == "__main__":
                         "/lidar_top", 
                         "/roi_pclouds"]
     
-    sub_ = rospy.Subscriber(sub_lidar_topic[5], PointCloud2, rslidar_callback, queue_size=1, buff_size=2**24)
-    
+    # sub_ = rospy.Subscriber(sub_lidar_topic[5], PointCloud2, rslidar_callback, queue_size=1, buff_size=2**24)
+    sub_ = rospy.Subscriber('/rslidar_points', PointCloud2, rslidar_callback, queue_size=1, buff_size=2**24)
+
     pub_arr_bbox = rospy.Publisher("pp_boxes", BoundingBoxArray, queue_size=1)
 
     print("[+] CenterPoint ros_node has started!")    
