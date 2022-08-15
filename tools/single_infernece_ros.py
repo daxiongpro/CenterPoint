@@ -230,7 +230,7 @@ if __name__ == "__main__":
     global proc
     ## CenterPoint
     config_path = 'configs/nusc/pp/nusc_centerpoint_pp_02voxel_two_pfn_10sweep.py'
-    model_path = 'model/centerpoint_pillar.pth'
+    model_path = 'checkpoints/centerpoint_pillar.pth'
 
     proc_1 = Processor_ROS(config_path, model_path)
     
