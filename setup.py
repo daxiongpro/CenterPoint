@@ -13,7 +13,7 @@ def readme():
 
 if __name__ == "__main__":
     setup(
-        name="st-centerpoint",
+        name="det3d",
         version="1.0",
         description="centerpoint det3d",
         long_description=readme(),
